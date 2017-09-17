@@ -1,0 +1,6 @@
+{
+  "main": "customerapi.raml",
+  "name": "CustomerAPI",
+  "classifier": "raml",
+  "tags": []
+}

@@ -1,0 +1,18 @@
+#%RAML 1.0 Trait
+
+  queryParameters:    
+    offset:
+      description: Specify the page that you want to retrieve. This allows for pagination of records retrival
+      type: integer
+      required: false
+      example: 20
+      default: 1
+    limit:
+      description: Specify the amount of items that will be retrieved per page
+      type: integer
+      required: false
+      example: 80
+      default: 10
+
+
+    

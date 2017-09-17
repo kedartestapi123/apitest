@@ -1,0 +1,16 @@
+#%RAML 1.0 Library
+usage:
+
+types: 
+  Customer: !include data_types/customerType.raml
+  Error: !include data_types/errorType.raml
+traits: 
+  pageble: !include common/traits/pagination.raml
+  limitable: !include common/traits/response-limit.raml
+  recent: !include common/traits/recent-records.raml
+  searchable: !include common/traits/search.raml
+  serverErrors: !include common/traits/remote-error.raml
+
+resourceTypes: 
+  collectionResourceType: !include common/resources/collection-resource-type.raml
+  objectResourceType: !include common/resources/object-resource-type.raml

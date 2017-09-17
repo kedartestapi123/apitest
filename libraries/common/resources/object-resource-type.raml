@@ -1,0 +1,89 @@
+#%RAML 1.0 ResourceType
+
+uses: 
+  customerLib: ../../common-lib.raml
+
+get:
+  description: get a <<resourcePathName | !singularize>>
+  responses: 
+    200:
+      body: 
+        application/json:
+            type: <<objectType>>
+            example: <<object-example>>
+    400:
+      description: bad request - please check payload before processing again.
+      body: 
+        application/json:
+          type: customerLib.Error
+    401:
+      description: unauthorized - please check permissions
+      body: 
+        application/json:
+          type: customerLib.Error
+    404:
+        description: requested resorce not found - please check the identifier
+        body: 
+          application/json:
+put:
+  description: update a <<resourcePathName | !singularize>>
+  headers:
+    UserID:
+      description: the identifier for the user who is creating a new <<resourcePathName | !singularize>>
+      type: string
+      example: USER123
+  responses:   
+    200:
+      description: resorce update successful
+      body: 
+        application/json:
+            type: <<objectType>>
+            example: <<object-example>>
+    409:
+      description: resorce update failed
+      body: 
+        application/json:
+          type: customerLib.Error
+    400:
+      description: bad request - please check payload before processing again.
+      body: 
+        application/json:
+          type: customerLib.Error
+    401:
+      description: unauthorized - please check permissions
+      body: 
+        application/json:
+          type: customerLib.Error
+    404:
+        description: requested resorce not found - please check the identifier
+        body: 
+          application/json:
+
+delete:
+  description: delete a <<resourcePathName | !singularize>>
+  headers:
+    UserID:
+      description: the identifier for the user who is creating a new <<resourcePathName | !singularize>>
+      type: string
+      example: USER123
+  responses:   
+    200:
+      description: resorce delete successful
+      body: 
+        application/json:
+    409:
+      description: resorce delete failed
+      body: 
+        application/json:
+          type: customerLib.Error
+    401:
+      description: unauthorized - please check permissions
+      body: 
+        application/json:
+          type: customerLib.Error
+    404:
+      description: requested resorce not found - please check the identifier
+      body: 
+        application/json:
+          type: customerLib.Error
+

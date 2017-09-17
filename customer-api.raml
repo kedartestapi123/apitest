@@ -1,0 +1,28 @@
+#%RAML 1.0
+version: v1
+title: Customer API
+baseUri: https://mocksvc.mulesoft.com/mocks/b9f082b3-2556-4811-a4dc-4bd1c787cf97/{version} # baseUri: https://api.abc.com/{version}
+mediaType: application/json
+securedBy: [basic]
+securitySchemes:
+  basic:
+    description: |
+      This API supports Basic Authentication.
+    type: Basic Authentication
+documentation: 
+  - title: API Overview
+    content: |
+        This API contains functionality that allows developers to 
+        retrieve and manipulate _customer_ information. 
+        Check out the [API Portal](https://developer.abc.com/api/docs) for more details.
+
+uses: 
+  customerLib: libraries/common-lib.raml
+  
+/customers: 
+  type: {customerLib.collectionResourceType: {objectType: customerLib.Customer, collection-example: !include libraries/examples/customers-example.raml, object-example: !include libraries/examples/new-customer-example.raml}}
+  
+  /{customerID}:
+      type: {customerLib.objectResourceType: {objectType: customerLib.Customer, object-example: !include libraries/examples/customer-example.raml}}
+
+  

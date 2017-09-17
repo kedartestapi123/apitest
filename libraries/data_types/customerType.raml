@@ -1,0 +1,12 @@
+#%RAML 1.0 DataType
+type: object
+properties:
+  customerID: 
+    description: ID that can be optionally sent or is auto generated upon creation
+    type: string
+    required: false
+  firstName: string
+  lastName?: string
+  address: !include addressType.raml
+  customerType: 
+    enum: [X,Y,Z] 

@@ -1,0 +1,72 @@
+#%RAML 1.0 ResourceType
+
+uses: 
+  customerLib: ../../common-lib.raml
+
+get:
+    description: retrieve <<resourcePathName>> 
+    is: [ customerLib.pageble, customerLib.limitable, customerLib.recent, customerLib.searchable, customerLib.serverErrors]
+    responses: 
+      200:
+        headers: 
+          Cache-Control:
+          More-Records:
+            description: Indicates if more records exist and only a subset is returned
+            type: boolean
+            example: true
+          Total-Records:
+            description: Indicates total number of records in the query
+            required: false
+            type: boolean
+            example: true
+          Current-Page:
+            description: Indicates the current page as per request/default
+            type: number
+            example: 1
+           
+        description: success    
+        body: 
+          application/json:
+            type: <<objectType>>[]
+            example: <<collection-example>>
+            
+      503:
+        body: 
+          application/json:
+      409:
+        description: resorce delete failed
+        body: 
+          application/json:
+            type: customerLib.Error
+      401:
+        description: unauthorized - please check permissions
+        body: 
+          application/json:
+            type: customerLib.Error
+      404:
+        description: requested resorce not found - please check the identifier
+        body: 
+          application/json:
+            type: customerLib.Error
+
+post:
+    description: create a new <<resourcePathName | !singularize>>
+    headers:
+      UserID:
+        description: the identifier for the user who is creating a new customer
+        type: string
+        example: USER123
+    body:
+      application/json:
+        type: <<objectType>>
+        example: <<object-example>>
+    responses: 
+      201:
+        headers: 
+          Location:
+        description: success    
+        body: 
+          application/json:
+            type: <<objectType>>
+            example: <<object-example>>
+      

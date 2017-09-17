@@ -1,0 +1,11 @@
+#%RAML 1.0 Trait
+
+uses: 
+  customerLib: ../../common-lib.raml
+
+responses:
+  500:
+    description: server error
+    body:
+      application/json:
+        type: customerLib.Error
